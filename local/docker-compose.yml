@@ -14,7 +14,7 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
-      - NODE_ENV=value
+      - NODE_ENV=development
       - MONGO_DB_CONNECTION_STRING=mongodb://root:example@mongo:27017/?authMechanism=DEFAULT
       - MONGO_DB_NAME=GCP
       - REDIS_URI=redis

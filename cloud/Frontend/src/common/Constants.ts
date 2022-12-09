@@ -1,5 +1,5 @@
 const constansts = {
-    serverBaseURL: 'http://localhost:3000'
+    serverBaseURL: 'https://backend-2oh6652btq-ez.a.run.app'
 }
 
 export default constansts;

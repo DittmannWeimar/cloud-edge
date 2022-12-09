@@ -2,6 +2,7 @@ version: "3.9"  # optional since v1.27.0
 services:
   frontend:
     build: ./Frontend
+    image: eu.gcr.io/endless-bonus-370920/frontend:latest 
     restart: on-failure
     ports:
       - "80:80"
@@ -9,29 +10,14 @@ services:
       - backend
   backend:
     build: ./Backend
+    image: eu.gcr.io/endless-bonus-370920/backend:latest 
     restart: on-failure
     ports:
       - "3000:3000"
     environment:
       - PORT=3000
-      - NODE_ENV=value
-      - MONGO_DB_CONNECTION_STRING=mongodb://root:example@mongo:27017/?authMechanism=DEFAULT
+      - NODE_ENV=development
+      - MONGO_DB_CONNECTION_STRING=mongodb+srv://cloud-edge-backend:logmigpaa@cluster0.lrrx168.mongodb.net/?retryWrites=true&w=majority
       - MONGO_DB_NAME=GCP
-      - REDIS_URI=redis
-    depends_on:
-      - mongo
-      - redis
-  mongo:
-    image: mongo
-    restart: on-failure
-    ports:
-      - '27017:27017'
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-  redis:
-    image: redis:6.2-alpine
-    restart: on-failure
-    ports:
-      - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning
+      - REDIS_URI=10.125.198.195:6379
+      #not in bouild, used to keep track of values
