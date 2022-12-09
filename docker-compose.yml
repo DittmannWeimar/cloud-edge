@@ -1,0 +1,37 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  frontend:
+    build: ./Frontend
+    restart: on-failure
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+  backend:
+    build: ./Backend
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=value
+      - MONGO_DB_CONNECTION_STRING=mongodb://root:example@mongo:27017/?authMechanism=DEFAULT
+      - MONGO_DB_NAME=GCP
+      - REDIS_URI=redis
+    depends_on:
+      - mongo
+      - redis
+  mongo:
+    image: mongo
+    restart: on-failure
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  redis:
+    image: redis:6.2-alpine
+    restart: on-failure
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
