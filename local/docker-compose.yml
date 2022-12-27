@@ -35,3 +35,4 @@ services:
     ports:
       - '6379:6379'
     command: redis-server --save 20 1 --loglevel warning
+#volumes should be added to mongodb and redis, but due to the fact that this is just for testing they have been omitted

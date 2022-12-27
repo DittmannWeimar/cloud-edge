@@ -20,4 +20,4 @@ services:
       - MONGO_DB_CONNECTION_STRING=mongodb+srv://cloud-edge-backend:logmigpaa@cluster0.lrrx168.mongodb.net/?retryWrites=true&w=majority
       - MONGO_DB_NAME=GCP
       - REDIS_URI=10.125.198.195:6379
-      #not in bouild, used to keep track of values
+      #not in build, used to keep track of values
